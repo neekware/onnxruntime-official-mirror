@@ -71,7 +71,8 @@ struct OrtEnv {
 
  private:
   static std::unique_ptr<OrtEnv> p_instance_;
-  static std::mutex m_;
+  // Static mutex moved to implementation file as function-local static to avoid destruction order issues
+  // static std::mutex m_;
   static int ref_count_;
 
   std::unique_ptr<onnxruntime::Environment> value_;
