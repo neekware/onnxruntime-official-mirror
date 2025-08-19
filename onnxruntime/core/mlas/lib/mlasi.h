@@ -2632,7 +2632,7 @@ void
 MlasThreadedBufAlloc(size_t size)
 {
     if (size > ThreadedBufSize) {
-#ifdef _MSC_VER
+#if defined(_MSC_VER) || defined(_WIN32)
         ThreadedBufHolder.reset(
             reinterpret_cast<uint8_t*>(_aligned_malloc(size, ThreadedBufAlignment)));
 #elif (__STDC_VERSION__ >= 201112L) && !defined(__APPLE__)
